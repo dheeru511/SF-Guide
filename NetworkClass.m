@@ -39,6 +39,10 @@
         //Main queue is not used as delegate queue because once download is done, in the delegate method below 'loadDatawithDictionary:forIdentifier' is called.If this method is called on main queue it may block UI as it loops through dictionaries and populate model objects
         
         NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:self.delegateQueue];
+        // adding datatask for testing
+        [session dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+        }];
         NSURLSessionDownloadTask * task= [session downloadTaskWithRequest:urlRequest] ;
         task.taskDescription = identifier;
         [task resume];
